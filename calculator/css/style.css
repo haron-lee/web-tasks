@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SUITE Variable", sans-serif;
+  background-color: #fff3e2;
+}
+
+h1 {
+  text-align: center;
+}
+
+.wrap {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #fa9884;
+}
+.wrap .display {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #fff3e2;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: end;
+  font-size: 27px;
+  border-style: none;
+}
+.wrap .numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.wrap .numbers button {
+  background-color: #fff3e2;
+  border: none;
+  padding: 20px 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: rgb(128, 128, 128);
+}
+.wrap .numbers #clear {
+  background: #e74646;
+  color: white;
+}
+.wrap .numbers #plus {
+  grid-row: span 2;
+}
+.wrap .numbers #enter {
+  grid-row: span 2;
+  background: #ffe5ca;
+  color: black;
+}
+.wrap .numbers #zero {
+  grid-column: span 2;
+}

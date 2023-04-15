@@ -1,0 +1,75 @@
+@import "_variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SUITE Variable", sans-serif;
+  background-color: $ivory;
+}
+
+h1 {
+  text-align: center;
+}
+
+.wrap {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: $coral;
+
+  .display {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: $ivory;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    text-align: end;
+    font-size: 27px;
+    border-style: none;
+  }
+
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+
+    button {
+      background-color: $ivory;
+      border: none;
+      padding: 20px 10px;
+      cursor: pointer;
+      font-size: 24px;
+      color: $gray;
+    }
+
+    #clear {
+      background: $red;
+      color: white;
+    }
+
+    #plus {
+      grid-row: span 2;
+    }
+
+    #enter {
+      grid-row: span 2;
+      background: $beige;
+      color: black;
+    }
+
+    #zero {
+      grid-column: span 2;
+    }
+  }
+}
