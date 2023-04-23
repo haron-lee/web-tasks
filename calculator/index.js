@@ -3,7 +3,6 @@ const numbers = document.querySelectorAll(".num");
 const operators = document.querySelectorAll(".operator");
 const clearButton = document.querySelector("#clear");
 const enterButton = document.querySelector("#enter");
-const plusButton = document.querySelector("#plus");
 
 function clearDisplay() {
   display.innerText = "0";
@@ -11,8 +10,8 @@ function clearDisplay() {
 
 // display.textContent에 저장된 수식을 문자열로 받아들이고, 이를 new Function() 생성자에 전달하여 새로운 함수를 생성. 이 함수를 실행하여 결과값을 계산하고, 계산된 결과값을 다시 display.textContent에 저장.
 function evaluateExpression() {
-  const expression = display.textContent;
-  const result = new Function(`return ${expression}`)();
+  const expression = display.textContent; // 7+7
+  const result = new Function(`return ${expression}`)(); // eval
   display.textContent = result;
 }
 
