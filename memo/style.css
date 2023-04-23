@@ -85,6 +85,13 @@ nav a:nth-child(5) {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 20px;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.7;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .list-content {
@@ -132,4 +139,11 @@ nav a:nth-child(5) {
 .list-delete:hover {
   color: white;
   background-color: crimson;
+}
+
+.modal {
+  position: absolute;
+  width: calc(100% - 220px);
+  margin-left: auto;
+  background-color: white;
 }

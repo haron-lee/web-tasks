@@ -17,7 +17,6 @@ function saveNote() {
   if (title === "" || content === "") {
     alert("제목 또는 내용을 작성해주세요");
   }
-
   // saveBtn이 저장하기여야하고, title과 content에 내용이 있어야 저장 실행
   if (saveBtn.textContent === "저장하기" && !(!title || !content)) {
     allMemo.push({ title, content, len: allMemo.length });
@@ -42,7 +41,7 @@ function render() {
   noteDisplay.innerHTML = "";
 
   for (const item of allMemo) {
-    const saveBox = document.createElement("li");
+    const saveBox = document.createElement("div");
     const saveTitle = document.createElement("h2");
     const saveContent = document.createElement("p");
     const saveId = document.createElement("p");
@@ -74,7 +73,9 @@ function render() {
     btnBox.appendChild(modifyBtn);
     btnBox.appendChild(deleteMemoBtn);
     saveBox.appendChild(btnBox);
-    noteDisplay.appendChild(saveBox);
+    // noteDisplay.appendChild(saveBox);
+    // 최신목록이 위로 올라가게끔 하기
+    noteDisplay.insertBefore(saveBox, noteDisplay.firstChild);
   }
 }
 
@@ -115,7 +116,7 @@ saveBtn.addEventListener("click", saveNote);
 // new note누르면은 note안의 내용이 clear되기 V
 // 수정하기 기능 V
 
-//* 날짜도 넣어볼까?
+//* 날짜도 넣어볼까? 이건 고민
 // 2023년 4월 23일 09:25 이런식으로?
 // 2023/4/23 09:25 이런식으로?
 
