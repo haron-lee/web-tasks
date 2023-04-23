@@ -63,6 +63,12 @@ nav a:nth-child(5) {
   overflow: auto;
 }
 
+.box-btn {
+  display: flex;
+  gap: 10px;
+  justify-content: right;
+}
+
 .list {
   padding: 20px;
   border-radius: 20px;
@@ -98,6 +104,7 @@ nav a:nth-child(5) {
   display: none;
 }
 
+.list-modify,
 .list-delete {
   font-size: 0.5rem;
   padding: 5px 12px;
@@ -108,6 +115,18 @@ nav a:nth-child(5) {
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
+  /* margin-left: auto; */
+  display: block;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.list-modify:hover {
+  color: white;
+  background-color: #147c97;
 }
 
 .list-delete:hover {
