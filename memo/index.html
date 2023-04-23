@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Memo App</title>
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-200">
+  <h1 class="text-xl text-center py-10">My memo</h1>
+  <div
+    class="container grid grid-cols-[220px_1fr_1fr] max-w-7xl m-auto shadow border rounded-lg h-4/5 min-h-fit bg-slate-100 overflow-hidden">
+    <section class="bg-white p-8 font-semibold">
+      <button id="newNote"
+        class="m-auto block px-8 py-4 mb-16 text-white  rounded-full transition-all duration-700 bg-gradient-to-r to-cyan-300 via-cyan from-cyan-700 bg-size-200 bg-pos-0 hover:bg-pos-100 hover:bg-gradient-to-l from-cyan-700 to-cyan-300"
+        type="button">New
+        Note</button>
+      <nav class="flex flex-col gap-7">
+        <a class="py-3 px-5 text-center" href="#none">Inbox</a>
+        <a class="py-3 px-5 text-center text-gray-400 hover:text-black" href="#none">Secrets</a>
+        <a class="py-3 px-5 text-center text-gray-400 hover:text-black" href="#none">Archive</a>
+        <a class="py-3 px-5 text-center text-gray-400 hover:text-black" href="#none">Trash</a>
+        <a class="py-3 px-5 text-center text-gray-400 hover:text-black" href="#none">Settings</a>
+      </nav>
+    </section>
+    <section id="note_display" class="p-5 flex flex-col gap-5">
+    </section>
+
+    <section id="note_content" class="none">
+    </section>
+
+    <section id="new_note" class="note h-full relative">
+      <div class="text-content h-full flex flex-col bg-white">
+        <input id="title"
+          class="block w-full px-5 py-7 border-gray-300 placeholder:text-s placeholder:text-gray-400 text-s text-gray-600 box-border object-fit font-semibold"
+          type="text" required placeholder="타이틀을 입력하세요.">
+        <textarea name="text" id="content"
+          class="w-full px-5 py-3 placeholder:text-s text-s text-gray-600 align-middle h-3/4"
+          placeholder="내용을 입력하세요"></textarea>
+        <button id="save_btn"
+          class="absolute bottom-0 right-4 px-8 py-3 mb-16 bg-gray-200 text-gray-400 hover:bg-gray-400 hover:text-white rounded-full"
+          type="button">저장하기</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="index.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          minHeight: {
+            '380': '380px',
+          },
+          gridTemplateColumns: {
+            'main': '220px 1fr 1fr',
+          },
+          backgroundSize: {
+            'size-200': '200% 200%',
+          },
+          backgroundPosition: {
+            'pos-0': '0% 0%',
+            'pos-100': '100% 100%',
+          },
+        }
+      }
+    }
+  </script>
+  <!-- minmax(200px, 500px) minmax(200px, 1fr) -->
+</body>
+
+</html>

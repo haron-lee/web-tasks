@@ -1,0 +1,116 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+body {
+  font-family: "SUITE", sans-serif;
+  height: 100vh;
+}
+
+#content,
+#title {
+  resize: none;
+  outline: none;
+}
+
+.none {
+  display: none;
+}
+
+/* button */
+[type="button"] {
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+nav a {
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+nav a:first-child {
+  background: url(img/note_black.svg) no-repeat 27px center;
+}
+
+nav a:nth-child(2) {
+  background: url(img/lock.svg) no-repeat 22px center;
+}
+
+nav a:nth-child(3) {
+  background: url(img/archive.svg) no-repeat 22px center;
+}
+
+nav a:nth-child(4) {
+  background: url(img/trash.svg) no-repeat 25px center;
+}
+
+nav a:nth-child(5) {
+  background: url(img/settings.svg) no-repeat 22px center;
+}
+
+/* 새로생성될 친구들 === */
+
+#note_display {
+  overflow: auto;
+}
+
+.list {
+  padding: 20px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.list-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.list-content {
+  font-size: 0.8rem;
+  color: #636363;
+  margin-bottom: 20px;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.7;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.list-id {
+  display: none;
+}
+
+.list-delete {
+  font-size: 0.5rem;
+  padding: 5px 12px;
+  background-color: #e5e7eb;
+  color: #959595;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.list-delete:hover {
+  color: white;
+  background-color: crimson;
+}
