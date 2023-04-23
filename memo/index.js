@@ -110,6 +110,39 @@ document.querySelector("#newNote").addEventListener("click", () => {
   }
 });
 
+//* modal 구현하기
+// TODO 기존에 있던 수정,삭제 버튼들은 어떻게 가져올까나?
+const lists = document.querySelectorAll(".list .list-title");
+const listsContent = document.querySelectorAll(".list .list-content");
+
+lists.forEach((list) => {
+  list.addEventListener("click", () => {
+    const modal = document.createElement("article");
+    const titleBox = document.createElement("div");
+    const modalTitle = document.createElement("h2");
+    const modalContent = document.createElement("p");
+    const closeBtn = document.createElement("button");
+
+    modal.classList.add("modal");
+    titleBox.classList.add("title-box");
+    modalTitle.classList.add("modal-title");
+    modalContent.classList.add("modal-content");
+    closeBtn.classList.add("close-btn");
+
+    //!!!
+    closeBtn.setAttribute("onclick", "closeModal()");
+
+    modal.appendChild(titleBox);
+    titleBox.appendChild(modalTitle);
+    titleBox.appendChild(closeBtn);
+    modal.appendChild(modalContent);
+    container.appendChild(modal);
+    // 클릭된 list-title의 textContent와, 형제의 textContent가져오기
+    modalTitle.textContent = list.textContent;
+    modalContent.textContent = list.nextElementSibling.textContent;
+  });
+});
+
 saveBtn.addEventListener("click", saveNote);
 
 // TODo
@@ -123,3 +156,6 @@ saveBtn.addEventListener("click", saveNote);
 //* 목록중의 하나 누르면은 모달처럼 펼치기.
 // 목록이랑, 작성부분 위로 떠오르게 하면 좋을 것 같은디..
 // 그 안에 수정,삭제버튼도 들어가고 수정버튼 누르면 현재로서는 모달창이 꺼지면서 텍스트 작성하는 곳으로 불러오는 수 밖에 없을듯
+// TODO modal
+// 1. close 버튼 backgroundImg로 추가하기
+// 2. closeModal() 함수 만들어서 기능 추가하기
