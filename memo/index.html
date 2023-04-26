@@ -30,11 +30,14 @@
     <section>
       <ul id="note_display" class="p-5 flex flex-col gap-5">
       </ul>
+      <div id="noti-container"
+        class="none text-xs text-white bg-indigo-500 absolute top-3 left-72 rounded-full p-2 shadow-lg shadow-indigo-500/50 animate-bounce">
+        <p>👇 목록의 제목을 눌러보세요!</p>
+      </div>
     </section>
 
     <section id="note_content" class="none">
     </section>
-
     <section id="new_note" class="note h-full relative">
       <div class="text-content h-full flex flex-col bg-white">
         <input id="title"
@@ -69,6 +72,9 @@
             'pos-0': '0% 0%',
             'pos-100': '100% 100%',
           },
+          margin: {
+            '500': '31rem',
+          }
         }
       }
     }
