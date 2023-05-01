@@ -78,6 +78,45 @@ function render() {
   }
 }
 
+//* modal 구현하기
+const lists = document.querySelectorAll('.list .list-title');
+const listsContent = document.querySelectorAll('.list .list-content');
+
+const closeModal = () => {
+  const modal = document.querySelector('.modal');
+  modal.remove();
+};
+
+saveBtn.addEventListener('click', saveNote);
+
+lists.forEach((list) => {
+  list.addEventListener('click', () => {
+    const modal = document.createElement('article');
+    const titleBox = document.createElement('div');
+    const modalTitle = document.createElement('h2');
+    const modalContent = document.createElement('p');
+    const closeBtn = document.createElement('button');
+
+    modal.classList.add('modal');
+    titleBox.classList.add('title-box');
+    modalTitle.classList.add('modal-title');
+    modalContent.classList.add('modal-content');
+    closeBtn.classList.add('close-btn');
+
+    closeBtn.setAttribute('onclick', 'closeModal()');
+
+    modal.appendChild(titleBox);
+    titleBox.appendChild(modalTitle);
+    titleBox.appendChild(closeBtn);
+    modal.appendChild(modalContent);
+    container.appendChild(modal);
+    // 클릭된 list-title의 textContent와, 형제의 textContent가져오기
+    modalTitle.textContent = list.textContent;
+    modalContent.textContent = list.nextElementSibling.textContent;
+    console.log(list);
+  });
+});
+
 const modify = () => {
   const idx = allMemo.findIndex((item) => item.len == event.srcElement.id);
   if (idx !== -1) {
@@ -109,44 +148,6 @@ document.querySelector('#newNote').addEventListener('click', () => {
   }
 });
 
-//* modal 구현하기
-const lists = document.querySelectorAll('.list .list-title');
-const listsContent = document.querySelectorAll('.list .list-content');
-
-const closeModal = () => {
-  const modal = document.querySelector('.modal');
-  modal.remove();
-};
-
-lists.forEach((list) => {
-  list.addEventListener('click', () => {
-    const modal = document.createElement('article');
-    const titleBox = document.createElement('div');
-    const modalTitle = document.createElement('h2');
-    const modalContent = document.createElement('p');
-    const closeBtn = document.createElement('button');
-
-    modal.classList.add('modal');
-    titleBox.classList.add('title-box');
-    modalTitle.classList.add('modal-title');
-    modalContent.classList.add('modal-content');
-    closeBtn.classList.add('close-btn');
-
-    closeBtn.setAttribute('onclick', 'closeModal()');
-
-    modal.appendChild(titleBox);
-    titleBox.appendChild(modalTitle);
-    titleBox.appendChild(closeBtn);
-    modal.appendChild(modalContent);
-    container.appendChild(modal);
-    // 클릭된 list-title의 textContent와, 형제의 textContent가져오기
-    modalTitle.textContent = list.textContent;
-    modalContent.textContent = list.nextElementSibling.textContent;
-  });
-});
-
-saveBtn.addEventListener('click', saveNote);
-
 //* Notification
 const notification = document.querySelector('#noti-container');
 const showNotification = () => {
@@ -159,11 +160,3 @@ const hideNotification = () => {
 
 setTimeout(showNotification, 5000);
 setTimeout(hideNotification, 9000);
-
-// TODo
-//* 날짜도 넣어볼까? 이건 고민
-// 2023년 4월 23일 09:25 이런식으로?
-// 2023/4/23 09:25 이런식으로?
-
-//* darkMode도 구현해보자.
-// 먼저 tailwind랑 섞여있어서 하나로 합쳐야할듯...
