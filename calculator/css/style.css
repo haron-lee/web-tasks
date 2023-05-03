@@ -1,14 +1,20 @@
+@font-face {
+  font-family: "Technology-Bold";
+  font-weight: 600;
+  src: url("@assets/fonts/Technology-Bold.ttf") format("ttf");
+}
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "SUITE Variable", sans-serif;
-  background-color: #fff3e2;
+  font-family: "Technology-Bold";
+  background-color: #454e4e;
 }
 
 h1 {
   text-align: center;
+  color: white;
 }
 
 .wrap {
@@ -16,19 +22,21 @@ h1 {
   margin: auto;
   padding: 30px;
   border-radius: 20px;
-  background-color: #fa9884;
+  background-color: #b3b6ba;
 }
 .wrap .display {
+  background-color: #3e4c42;
+  color: rgb(23, 23, 23);
+  padding: 15px 20px;
+  font-size: 34px;
   border-radius: 20px;
-  padding: 20px;
-  background-color: #fff3e2;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
   text-align: end;
-  font-size: 27px;
   border-style: none;
+  white-space: nowrap;
 }
 .wrap .numbers {
   display: grid;
@@ -42,25 +50,32 @@ h1 {
   -o-border-radius: 20px;
 }
 .wrap .numbers button {
-  background-color: #fff3e2;
+  color: white;
   border: none;
   padding: 20px 10px;
   cursor: pointer;
   font-size: 24px;
-  color: rgb(128, 128, 128);
+  color: white;
+  background-color: #454e4e;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.wrap .numbers .num {
+  background-color: #121a16;
+}
+.wrap .numbers .operator {
+  background-color: #454e4e;
 }
 .wrap .numbers #clear {
-  background: #e74646;
+  background: #9c3030;
   color: white;
-}
-.wrap .numbers #plus {
-  grid-row: span 2;
-}
-.wrap .numbers #enter {
-  grid-row: span 2;
-  background: #ffe5ca;
-  color: black;
 }
 .wrap .numbers #zero {
   grid-column: span 2;
+}
+.wrap .numbers #plus {
+  grid-row: span 2;
 }
