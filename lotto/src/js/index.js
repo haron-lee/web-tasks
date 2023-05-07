@@ -9,11 +9,8 @@ const toggleSpan = document.querySelector('#toggle-span');
 
 const purchaseValue = purchase.value;
 
-// purchase가 invalid가 아니면 !
-// 이벤트 막고, 알림창 띄워주기!
-
+//* 유효성
 const handleWarning = function (event) {
-  //TODO 1000원 단위로 안넣었을시 input focus border color 바꾸기
   const warning = document.createElement('p');
   warning.classList.add('warning');
   warning.style.color = 'red';
@@ -30,9 +27,15 @@ const handleWarning = function (event) {
 
 //* random으로 Lotto 번호 생성 [1, 2, 3, 4, 5, 6]
 const randomLotto = function () {
+  // 중복검사 싫다..미리 array에 45까지 넣어두기
+  let nums = Array.from({ length: 45 }, (_, i) => i + 1);
   let lotto = [];
   for (let i = 0; i < 6; i++) {
-    lotto.push(Math.floor(Math.random() * 45) + 1);
+    const randomIndex = Math.floor(Math.random() * nums.length);
+    const num = nums[randomIndex];
+    // 선택된 숫자 배열에서 지우기
+    nums.splice(randomIndex, 1);
+    lotto.push(num);
   }
   lotto.sort((a, b) => a - b);
   return lotto;
@@ -48,12 +51,17 @@ const randomLottoSet = function (n) {
 const enterLotto = () => {
   // 12000 => 12장
   const purchaseNum = purchase.value / 1000;
+  const countingBox = document.querySelector('#counting-box');
+  const visualizationBox = document.querySelector('#visualization-box');
   const lottoSet = randomLottoSet(purchaseNum);
-  console.log(lottoSet);
-
   const lottoWrap = document.createElement('div');
+  const countingLotto = document.createElement('span');
+  countingBox.innerText = `총 ${purchaseNum}개를 구입하셨습니다.`;
+  countingLotto.innerText = ` x ${purchaseNum - 5}`;
+
   lottoWrap.classList.add('lottos-wrap');
   completedBox.appendChild(lottoWrap);
+  visualizationBox.appendChild(countingLotto);
 
   for (let i = 0; i < lottoSet.length; i++) {
     const lottos = document.createElement('p');
@@ -63,6 +71,11 @@ const enterLotto = () => {
     console.log(lottos);
   }
   lottoWrap.classList.add('none');
+};
+
+const viewResult = () => {
+  const winNumbers = document.querySelectorAll('.winning-number');
+  const bonusNumber = document.querySelector('.bonus-number');
 };
 
 //* 번호보기 checked 역할
@@ -86,7 +99,9 @@ btnAuto.addEventListener('click', (event) => {
     // 1000으로 나눠질때만!
     const warning = document.querySelector('.warning');
     purchase.classList.remove('red');
-    warning.remove();
+    if (warning) {
+      warning.remove();
+    }
     enterLotto();
   }
 });
