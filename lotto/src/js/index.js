@@ -6,6 +6,10 @@ const purchase = purchaseBox.querySelector('#purchase');
 const btnAuto = purchaseBox.querySelector('#btn-auto');
 const toggle = document.querySelector('#toggle');
 const toggleSpan = document.querySelector('#toggle-span');
+const autoGenerator = document.querySelector('#auto-generator');
+const winningNums = document.querySelectorAll('.winning-number');
+const bonusNum = document.querySelector('.bonus-number');
+const btnResult = document.querySelector('.open-result-modal-button');
 
 const purchaseValue = purchase.value;
 
@@ -47,13 +51,13 @@ const randomLottoSet = function (n) {
 };
 
 //* 로또 몇장이 필요한지 계산 후 장수 만큼의 배열의 로또를 div에 담아서 반응보기를 눌렀을 때 보여주기
-
 const enterLotto = () => {
   // 12000 => 12장
   const purchaseNum = purchase.value / 1000;
   const countingBox = document.querySelector('#counting-box');
   const visualizationBox = document.querySelector('#visualization-box');
   const lottoSet = randomLottoSet(purchaseNum);
+  console.log(lottoSet);
   const lottoWrap = document.createElement('div');
   const countingLotto = document.createElement('span');
   countingBox.innerText = `총 ${purchaseNum}개를 구입하셨습니다.`;
@@ -68,11 +72,11 @@ const enterLotto = () => {
     lottos.classList.add('lottos');
     lottos.innerText = lottoSet[i] + ' ';
     lottoWrap.appendChild(lottos);
-    console.log(lottos);
   }
   lottoWrap.classList.add('none');
 };
 
+//* 번호보기
 const viewResult = () => {
   const winNumbers = document.querySelectorAll('.winning-number');
   const bonusNumber = document.querySelector('.bonus-number');
@@ -80,6 +84,26 @@ const viewResult = () => {
 
 //* 번호보기 checked 역할
 let flag = false;
+
+//* 자동생성번호 및 보너스 번호 (중복처리)
+const autoLotto = () => {
+  const winningNum = randomLotto();
+  let bonus;
+  do {
+    bonus = Math.floor(Math.random() * 45) + 1;
+  } while (winningNum.includes(bonus));
+  bonusNum.value = bonus;
+
+  for (let i = 0; i < winningNum.length; i++) {
+    // 중복된 번호가 있으면 다시 선택
+    if (winningNum.slice(0, i).includes(winningNum[i])) {
+      winningNum[i] = randomNum();
+      i--;
+      continue;
+    }
+    winningNums[i].value = winningNum[i];
+  }
+};
 
 purchase.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && purchase.value % 1000 !== 0) {
@@ -89,8 +113,6 @@ purchase.addEventListener('keydown', (event) => {
     enterLotto();
   }
 });
-
-btnAuto.addEventListener('invalid', handleWarning);
 
 btnAuto.addEventListener('click', (event) => {
   if (purchase.value % 1000 !== 0) {
@@ -117,3 +139,5 @@ toggleSpan.addEventListener('click', (event) => {
     lottoWrap.classList.add('none');
   }
 });
+
+autoGenerator.addEventListener('click', autoLotto);
