@@ -12,17 +12,17 @@ const $lottoNumbersToggleButton = document.querySelector(
 );
 
 // wins
-const win5 = document.querySelector('.win5');
-const win4 = document.querySelector('.win4');
-const win3 = document.querySelector('.win3');
-const win2 = document.querySelector('.win2');
-const win1 = document.querySelector('.win1');
+const win5 = document.querySelector('.win-5');
+const win4 = document.querySelector('.win-4');
+const win3 = document.querySelector('.win-3');
+const win2 = document.querySelector('.win-2');
+const win1 = document.querySelector('.win-1');
 // const win = [win5, win4, win3, win2, win1];
 let countThree = 0;
 let countFour = 0;
 let countFive = 0;
 let countSix = 0;
-let countSeven = 0;
+let countAll = 0;
 
 const onModalShow = () => {
   $modal.classList.add('open');
@@ -34,7 +34,7 @@ const onModalClose = () => {
 
 //TODO input에 숫자 하나만 적을 경우 경고창은 뜨지만 modal은 실행되는 거 막기
 $showResultButton.addEventListener('click', () => {
-  let count = 0;
+  let winningNumsArr = [];
 
   winningNums.forEach((winningNum) => {
     if (
@@ -47,20 +47,42 @@ $showResultButton.addEventListener('click', () => {
     } else {
       onModalShow();
     }
+    winningNumsArr.push(Number(winningNum.value));
   });
 
-  console.log(lottosList);
   for (let i = 0; i < lottosList.length; i++) {
-    for (let j = 0; j < 6; j++) {
-      if (lottosList[i][j] === winningNums[j]) {
-        count++;
-      }
+    let matchedNums = lottosList[i].filter((num) =>
+      winningNumsArr.includes(num)
+    );
+    if (matchedNums.length === 6) {
+      countAll++;
+    } else if (
+      matchedNums.length === 5 &&
+      lottosList[i].includes(parseInt(bonusNum.value))
+    ) {
+      countSix++;
+    } else if (matchedNums.length === 5) {
+      countFive++;
+    } else if (matchedNums.length === 4) {
+      countFour++;
+    } else if (matchedNums.length === 3) {
+      countThree++;
     }
   }
 
-  console.log(count);
-  if (count === 3) {
-    console.log('3개');
-  }
+  //* count의 맞은 숫자가
+  console.log(
+    '맞은 숫자',
+    countAll,
+    countSix,
+    countFive,
+    countFour,
+    countThree
+  );
+  win5.innerText = `${countThree}개`;
+  win4.innerText = `${countFour}개`;
+  win3.innerText = `${countFive}개`;
+  win2.innerText = `${countSix}개`;
+  win1.innerText = `${countAll}개`;
 });
 $modalClose.addEventListener('click', onModalClose);
