@@ -9,8 +9,13 @@ body {
 }
 
 #app {
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 }
 
 .winning-number {
@@ -34,4 +39,24 @@ body {
 .red {
   border: 1px solid red;
   outline: 1px solid red;
+}
+
+.price-selection {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.price-selection span {
+  padding: 3px 10px;
+  cursor: pointer;
+  background-color: #aee0e7;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.price-selection span:hover {
+  background-color: #6cc6d1;
 }

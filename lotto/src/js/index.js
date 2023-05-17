@@ -1,5 +1,6 @@
-'use strict;';
+'use strict';
 
+const priceSelection = document.querySelectorAll('.price-selection span');
 const purchaseBox = document.querySelector('#purchase-box');
 const completedBox = document.querySelector('#completed-box');
 const purchase = purchaseBox.querySelector('#purchase');
@@ -12,6 +13,13 @@ const bonusNum = document.querySelector('.bonus-number');
 const btnResult = document.querySelector('.open-result-modal-button');
 
 const purchaseValue = purchase.value;
+
+priceSelection.forEach((price) => {
+  price.addEventListener('click', () => {
+    purchase.value = ~~price.innerText.replace(/,/g, '');
+    purchase.focus();
+  });
+});
 
 //* 유효성
 const handleWarning = function (event) {
@@ -51,13 +59,15 @@ const randomLottoSet = function (n) {
 };
 
 //* 로또 몇장이 필요한지 계산 후 장수 만큼의 배열의 로또를 div에 담아서 반응보기를 눌렀을 때 보여주기
+let lottosList = [];
+
 const enterLotto = () => {
   // 12000 => 12장
   const purchaseNum = purchase.value / 1000;
   const countingBox = document.querySelector('#counting-box');
   const visualizationBox = document.querySelector('#visualization-box');
   const lottoSet = randomLottoSet(purchaseNum);
-  console.log(lottoSet);
+  lottosList = lottoSet;
   const lottoWrap = document.createElement('div');
   const countingLotto = document.createElement('span');
   countingBox.innerText = `총 ${purchaseNum}개를 구입하셨습니다.`;
@@ -75,15 +85,6 @@ const enterLotto = () => {
   }
   lottoWrap.classList.add('none');
 };
-
-//* 번호보기
-const viewResult = () => {
-  const winNumbers = document.querySelectorAll('.winning-number');
-  const bonusNumber = document.querySelector('.bonus-number');
-};
-
-//* 번호보기 checked 역할
-let flag = false;
 
 //* 자동생성번호 및 보너스 번호 (중복처리)
 const autoLotto = () => {
@@ -105,15 +106,18 @@ const autoLotto = () => {
   }
 };
 
+//* input enter
 purchase.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && purchase.value % 1000 !== 0) {
     event.preventDefault();
     handleWarning();
   } else if (event.key === 'Enter') {
+    event.preventDefault();
     enterLotto();
   }
 });
 
+//* 자동구매
 btnAuto.addEventListener('click', (event) => {
   if (purchase.value % 1000 !== 0) {
     handleWarning();
@@ -128,8 +132,12 @@ btnAuto.addEventListener('click', (event) => {
   }
 });
 
-toggleSpan.addEventListener('click', (event) => {
-  const lottoWrap = completedBox.querySelector('.lottos-wrap');
+//* 번호보기 checked 역할
+let flag = false;
+
+//* 번호보기 버튼
+toggleSpan.addEventListener('click', () => {
+  const lottoWrap = document.querySelector('.lottos-wrap');
   flag = !flag;
   if (flag) {
     lottoWrap.classList.remove('none');
@@ -140,4 +148,14 @@ toggleSpan.addEventListener('click', (event) => {
   }
 });
 
-autoGenerator.addEventListener('click', autoLotto);
+//* 당첨번호 자동생성
+autoGenerator.addEventListener('click', () => {
+  const countingBox = document.querySelector('#counting-box');
+  if (countingBox.innerText === '') {
+    return;
+  } else {
+    autoLotto();
+  }
+});
+
+export { lottosList };
